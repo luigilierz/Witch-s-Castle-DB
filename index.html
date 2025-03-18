@@ -13,7 +13,10 @@
         // Загружаем данные из внешнего JSON
         let textData; // Переменная для хранения данных
         fetch('data.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('Файл не найден');
+                return response.json();
+            })
             .then(data => {
                 textData = data; // Сохраняем данные после загрузки
             })
@@ -24,12 +27,12 @@
             const id = Number(document.getElementById('idInput').value); // Берем ID из ввода
             const result = document.getElementById('result');
             if (!textData) {
-                result.textContent = "Данные ещё загружаются...";
+                result.textContent = "Данные ещё загружаются или не найдены...";
                 return;
             }
             const entry = textData.find(item => item.ID === id); // Ищем запись по ID
             if (entry) {
-                result.textContent = entry.Текст; // Показываем текст
+                result.textContent = entry.TEXTID; // Показываем TEXTID
             } else {
                 result.textContent = "ID не найден";
             }
