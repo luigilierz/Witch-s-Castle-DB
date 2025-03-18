@@ -7,19 +7,18 @@
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, rgba(20, 0, 50, 0.9), rgba(0, 30, 60, 0.9)), url('bg1.png') no-repeat center center;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(0, 30, 60, 0.9)), url('bg1.png') no-repeat center center;
             background-size: cover;
             background-blend-mode: overlay;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            padding-top: 60px; /* Уменьшил для компактности меню */
+            padding-top: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Адаптивное размытие фона */
         body::before {
             content: "";
             position: fixed;
@@ -38,13 +37,12 @@
             }
         }
 
-        /* Навигационное меню */
         .nav-menu {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: #1A1A2E; /* Тёмный фон, как на изображении */
+            background: #0F172A; /* Тёмно-синий, как на скриншоте */
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -53,7 +51,7 @@
         }
 
         .nav-menu .logo {
-            background: #F1C40F; /* Жёлтый, как на Wuthering.gg */
+            background: #F1C40F;
             color: #000;
             padding: 5px 15px;
             border-radius: 5px;
@@ -65,7 +63,7 @@
         .nav-menu .nav-item {
             margin: 0 5px;
             padding: 5px 10px;
-            background: #2E2E3A; /* Серый фон пунктов */
+            background: #2E2E3A;
             color: #FFF;
             border-radius: 5px;
             text-decoration: none;
@@ -80,7 +78,7 @@
         }
 
         .nav-menu .nav-item.new {
-            background: #4A90E2; /* Синий для "New" */
+            background: #4A90E2;
             position: relative;
         }
 
@@ -96,7 +94,6 @@
             border-radius: 3px;
         }
 
-        /* Контейнер для контента */
         .content {
             position: relative;
             width: 80%;
@@ -107,13 +104,13 @@
         }
 
         .search-card {
-            background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый */
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
             padding: 15px;
             width: 100%;
-            max-width: 250px; /* Компактнее, как на фото */
+            max-width: 200px; /* Уменьшил до размера на фото */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px); /* Лёгкий эффект стекла */
             margin: 0 auto;
             display: inline-block;
             text-align: center;
@@ -128,13 +125,13 @@
             font-size: 14px;
             box-sizing: border-box;
             outline: none;
-            text-align: center; /* Центрируем текст внутри поля */
+            text-align: center;
         }
 
         .button {
             width: 100%;
             padding: 8px;
-            background: linear-gradient(90deg, #8E2DE2, #4A00E0); /* Фиолетовый градиент */
+            background: linear-gradient(90deg, #A100FF, #6A0DAD); /* Ярче, как на фото */
             color: white;
             border: none;
             border-radius: 10px;
@@ -172,7 +169,6 @@
     </style>
 </head>
 <body>
-    <!-- Навигационное меню -->
     <div class="nav-menu">
         <div class="logo">Wuthering.gg</div>
         <a href="#" class="nav-item">Characters</a>
@@ -186,7 +182,6 @@
         <a href="#" class="nav-item new">Builder</a>
     </div>
 
-    <!-- Контент -->
     <div class="content">
         <div class="search-card">
             <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
