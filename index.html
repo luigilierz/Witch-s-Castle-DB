@@ -7,25 +7,27 @@
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: url('bg1.png') no-repeat center center fixed;
+            background: linear-gradient(135deg, rgba(30, 0, 60, 0.8), rgba(0, 40, 80, 0.8)), url('bg1.png') no-repeat center center fixed;
             background-size: cover;
+            background-blend-mode: overlay;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative; /* Для корректного наложения */
         }
 
-        /* Размытие и затемнение фона через CSS, если редактировать не хочешь */
+        /* Улучшенное размытие фона */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -50px; /* Расширяем область размытия */
+            left: -50px;
+            width: calc(100% + 100px);
+            height: calc(100% + 100px);
             background: inherit;
-            filter: brightness(0.5) blur(5px);
+            filter: brightness(0.7) blur(15px); /* Усиленное размытие */
             z-index: -1;
         }
 
@@ -52,8 +54,8 @@
             padding: 20px;
             width: 100%;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            margin-left: 220px; /* Сдвиг правее объекта */
-            backdrop-filter: blur(10px); /* Эффект стекла в iOS */
+            margin-left: 220px;
+            backdrop-filter: blur(10px);
         }
 
         .input-field {
@@ -68,7 +70,7 @@
         .button {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(90deg, #007AFF, #34C759);
+            background: linear-gradient(90deg, #6B46C1, #B794F4);
             color: white;
             border: none;
             border-radius: 10px;
@@ -88,6 +90,22 @@
             border-radius: 10px;
             text-align: center;
         }
+
+        /* Индикатор загрузки */
+        .loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -99,9 +117,13 @@
             <p id="result" class="result"></p>
         </div>
     </div>
+    <div id="loading" class="loading">Загрузка...</div>
 
     <script>
         let textData;
+        const loading = document.getElementById('loading');
+        loading.style.display = 'block'; // Показываем индикатор при старте
+
         fetch('data.json')
             .then(response => {
                 if (!response.ok) throw new Error('Файл не найден');
@@ -109,14 +131,18 @@
             })
             .then(data => {
                 textData = data;
+                loading.style.display = 'none'; // Скрываем после загрузки
             })
-            .catch(error => console.error('Ошибка загрузки JSON:', error));
+            .catch(error => {
+                console.error('Ошибка загрузки JSON:', error);
+                loading.textContent = 'Ошибка загрузки данных';
+            });
 
         function showText() {
             const id = Number(document.getElementById('idInput').value);
             const result = document.getElementById('result');
             if (!textData) {
-                result.textContent = "Данные ещё загружаются или не найдены...";
+                result.textContent = "Данные ещё не загружены...";
                 return;
             }
             const entry = textData.find(item => item.ID === id);
