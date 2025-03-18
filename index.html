@@ -42,7 +42,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: #0F172A; /* Тёмно-синий, как на скриншоте */
+            background: #0F172A;
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -99,8 +99,17 @@
             width: 80%;
             max-width: 600px;
             margin: 0 auto;
-            text-align: center;
             padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .object {
+            position: absolute;
+            left: 20px;
+            width: 150px; /* Размер объекта */
+            height: auto;
+            z-index: 1;
         }
 
         .search-card {
@@ -108,10 +117,10 @@
             border-radius: 15px;
             padding: 15px;
             width: 100%;
-            max-width: 200px; /* Уменьшил до размера на фото */
+            max-width: 200px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(3px); /* Лёгкий эффект стекла */
-            margin: 0 auto;
+            backdrop-filter: blur(3px);
+            margin-left: 180px; /* Смещение для объекта */
             display: inline-block;
             text-align: center;
         }
@@ -131,7 +140,7 @@
         .button {
             width: 100%;
             padding: 8px;
-            background: linear-gradient(90deg, #A100FF, #6A0DAD); /* Ярче, как на фото */
+            background: linear-gradient(90deg, #A100FF, #6A0DAD);
             color: white;
             border: none;
             border-radius: 10px;
@@ -183,6 +192,7 @@
     </div>
 
     <div class="content">
+        <img src="object.png" alt="Object" class="object">
         <div class="search-card">
             <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
             <button onclick="showText()" class="button">Найти</button>
