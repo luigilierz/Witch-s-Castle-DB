@@ -3,36 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <title>Текст по ID</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: url('bg-dark-blur.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Размытие и затемнение фона через CSS, если редактировать не хочешь */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: brightness(0.5) blur(5px);
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 80%;
+            max-width: 600px;
+            height: 400px;
+        }
+
+        .object {
+            position: absolute;
+            left: 20px;
+            width: 200px;
+            height: auto;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-left: 220px; /* Сдвиг правее объекта */
+            backdrop-filter: blur(10px); /* Эффект стекла в iOS */
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <input type="number" id="idInput" placeholder="Введи ID">
-    <button onclick="showText()">Показать</button>
-    <p id="result"></p>
+    <div class="container">
+        <img src="object.png" alt="Object" class="object">
+        <div class="card">
+            <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
+            <button onclick="showText()" class="button">Найти</button>
+            <p id="result" class="result"></p>
+        </div>
+    </div>
 
     <script>
-        // Загружаем данные из внешнего JSON
-        let textData; // Переменная для хранения данных
+        let textData;
         fetch('data.json')
             .then(response => {
                 if (!response.ok) throw new Error('Файл не найден');
                 return response.json();
             })
             .then(data => {
-                textData = data; // Сохраняем данные после загрузки
+                textData = data;
             })
             .catch(error => console.error('Ошибка загрузки JSON:', error));
 
-        // Функция для отображения текста
         function showText() {
-            const id = Number(document.getElementById('idInput').value); // Берем ID из ввода
+            const id = Number(document.getElementById('idInput').value);
             const result = document.getElementById('result');
             if (!textData) {
                 result.textContent = "Данные ещё загружаются или не найдены...";
                 return;
             }
-            const entry = textData.find(item => item.ID === id); // Ищем запись по ID
+            const entry = textData.find(item => item.ID === id);
             if (entry) {
-                result.textContent = entry.TEXTID; // Показываем TEXTID
+                result.textContent = entry.TEXTID;
             } else {
                 result.textContent = "ID не найден";
             }
