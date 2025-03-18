@@ -38,36 +38,36 @@
 
         .nav-menu {
             width: 100%;
-            max-width: 800px; /* Ограничим ширину */
+            max-width: 1000px; /* Увеличил максимальную ширину */
             background: #0F172A;
-            padding: 10px 20px;
+            padding: 15px 30px; /* Увеличил отступы */
             display: flex;
             align-items: center;
-            justify-content: center; /* Центрируем по горизонтали */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            margin-top: 40px; /* Отступ сверху, как на фото */
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Усиленная тень */
+            margin-top: 50px; /* Немного больше отступа сверху */
         }
 
         .nav-menu .logo {
             background: #F1C40F;
             color: #000;
-            padding: 5px 15px;
-            border-radius: 5px;
+            padding: 8px 20px; /* Увеличил размер */
+            border-radius: 8px;
             font-weight: bold;
-            margin-right: 20px;
-            font-size: 14px;
+            margin-right: 25px;
+            font-size: 18px; /* Увеличил шрифт */
         }
 
         .nav-menu .nav-item {
-            margin: 0 5px;
-            padding: 5px 10px;
+            margin: 0 8px; /* Увеличил отступы между элементами */
+            padding: 8px 15px; /* Увеличил размер */
             background: #2E2E3A;
             color: #FFF;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            font-size: 12px;
+            font-size: 16px; /* Увеличил шрифт */
             transition: background 0.3s;
         }
 
@@ -83,55 +83,55 @@
         .nav-menu .nav-item.new::after {
             content: "New";
             position: absolute;
-            top: -5px;
-            right: -10px;
+            top: -6px;
+            right: -12px;
             background: #F1C40F;
             color: #000;
-            font-size: 8px;
-            padding: 1px 4px;
-            border-radius: 3px;
+            font-size: 10px; /* Увеличил шрифт метки */
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .content {
             position: relative;
             width: 80%;
-            max-width: 600px;
+            max-width: 700px; /* Увеличил максимальную ширину */
             margin: 0 auto;
-            padding: 20px 0;
+            padding: 30px 0; /* Увеличил отступы */
             display: flex;
             align-items: center;
-            flex-grow: 1; /* Занимает оставшееся пространство */
+            flex-grow: 1;
             justify-content: center;
         }
 
         .object {
             position: absolute;
-            left: 20px;
-            width: 150px;
+            left: 30px; /* Увеличил отступ слева */
+            width: 200px; /* Увеличил размер объекта */
             height: auto;
             z-index: 1;
         }
 
         .search-card {
             background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 20px; /* Увеличил радиус */
+            padding: 20px; /* Увеличил внутренние отступы */
             width: 100%;
-            max-width: 200px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(3px);
-            margin-left: 180px;
+            max-width: 250px; /* Увеличил ширину плашки */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Усиленная тень */
+            backdrop-filter: blur(4px); /* Немного усилен эффект стекла */
+            margin-left: 250px; /* Увеличил смещение для большего объекта */
             display: inline-block;
             text-align: center;
         }
 
         .input-field {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 12px; /* Увеличил отступы */
+            margin-bottom: 15px; /* Увеличил отступ */
+            border: 2px solid #ccc; /* Увеличил толщину границы */
+            border-radius: 12px;
+            font-size: 16px; /* Увеличил шрифт */
             box-sizing: border-box;
             outline: none;
             text-align: center;
@@ -139,12 +139,12 @@
 
         .button {
             width: 100%;
-            padding: 8px;
+            padding: 12px; /* Увеличил отступы */
             background: linear-gradient(90deg, #A100FF, #6A0DAD);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 16px; /* Увеличил шрифт */
             cursor: pointer;
             transition: opacity 0.3s;
         }
@@ -154,16 +154,16 @@
         }
 
         .result {
-            margin-top: 10px;
-            padding: 8px;
+            margin-top: 15px; /* Увеличил отступ */
+            padding: 12px; /* Увеличил отступы */
             background: #f0f0f0;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
             max-width: 100%;
             overflow-x: auto;
             white-space: nowrap;
             box-sizing: border-box;
-            font-size: 14px;
+            font-size: 16px; /* Увеличил шрифт */
         }
 
         .loading {
@@ -173,7 +173,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 18px;
+            font-size: 20px; /* Увеличил шрифт */
         }
     </style>
 </head>
