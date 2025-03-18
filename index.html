@@ -13,7 +13,6 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            padding-top: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,16 +37,13 @@
         }
 
         .nav-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             background: #0F172A;
             padding: 10px 20px;
             display: flex;
             align-items: center;
-            z-index: 10;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px; /* Отступ от контента */
         }
 
         .nav-menu .logo {
@@ -107,7 +103,7 @@
         .object {
             position: absolute;
             left: 20px;
-            width: 150px; /* Размер объекта */
+            width: 150px;
             height: auto;
             z-index: 1;
         }
@@ -120,7 +116,7 @@
             max-width: 200px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(3px);
-            margin-left: 180px; /* Смещение для объекта */
+            margin-left: 180px;
             display: inline-block;
             text-align: center;
         }
