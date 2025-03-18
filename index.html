@@ -7,28 +7,35 @@
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, rgba(30, 0, 60, 0.8), rgba(0, 40, 80, 0.8)), url('bg1.png') no-repeat center center fixed;
+            background: linear-gradient(135deg, rgba(30, 0, 60, 0.8), rgba(0, 40, 80, 0.8)), url('bg1.png') no-repeat center center;
             background-size: cover;
             background-blend-mode: overlay;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
-            position: relative; /* Для корректного наложения */
+            position: relative;
         }
 
-        /* Улучшенное размытие фона */
+        /* Адаптивное размытие фона */
         body::before {
             content: "";
             position: fixed;
-            top: -50px; /* Расширяем область размытия */
-            left: -50px;
-            width: calc(100% + 100px);
-            height: calc(100% + 100px);
+            top: -100px;
+            left: -100px;
+            width: calc(100% + 200px);
+            height: calc(100% + 200px);
             background: inherit;
-            filter: brightness(0.7) blur(15px); /* Усиленное размытие */
+            filter: brightness(0.7) blur(15px);
             z-index: -1;
+            transition: filter 0.3s; /* Плавное изменение размытия */
+        }
+
+        @media (max-width: 600px) {
+            body::before {
+                filter: brightness(0.7) blur(10px); /* Уменьшаем размытие на маленьких экранах */
+            }
         }
 
         .container {
@@ -38,6 +45,7 @@
             width: 80%;
             max-width: 600px;
             height: 400px;
+            min-height: 300px; /* Минимальная высота для адаптивности */
         }
 
         .object {
@@ -56,6 +64,8 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             margin-left: 220px;
             backdrop-filter: blur(10px);
+            max-height: 100%; /* Ограничиваем высоту */
+            overflow: hidden; /* Предотвращаем вылезание */
         }
 
         .input-field {
@@ -65,6 +75,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             font-size: 16px;
+            box-sizing: border-box; /* Учитываем padding в ширине */
         }
 
         .button {
@@ -89,6 +100,10 @@
             background: #f0f0f0;
             border-radius: 10px;
             text-align: center;
+            max-width: 100%; /* Ограничиваем ширину */
+            overflow-x: auto; /* Горизонтальный скроллинг */
+            white-space: nowrap; /* Предотвращаем перенос строк */
+            box-sizing: border-box;
         }
 
         /* Индикатор загрузки */
@@ -100,11 +115,6 @@
             transform: translate(-50%, -50%);
             color: white;
             font-size: 18px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -122,7 +132,7 @@
     <script>
         let textData;
         const loading = document.getElementById('loading');
-        loading.style.display = 'block'; // Показываем индикатор при старте
+        loading.style.display = 'block';
 
         fetch('data.json')
             .then(response => {
@@ -131,7 +141,7 @@
             })
             .then(data => {
                 textData = data;
-                loading.style.display = 'none'; // Скрываем после загрузки
+                loading.style.display = 'none';
             })
             .catch(error => {
                 console.error('Ошибка загрузки JSON:', error);
