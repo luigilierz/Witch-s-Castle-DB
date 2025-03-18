@@ -13,7 +13,10 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            padding-top: 80px; /* Пространство под фиксированное меню */
+            padding-top: 80px; /* Пространство под меню */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Адаптивное размытие фона */
@@ -94,27 +97,19 @@
             width: 80%;
             max-width: 600px;
             margin: 0 auto;
-            padding-top: 20px;
+            text-align: center;
         }
 
-        .object {
-            position: absolute;
-            left: 20px;
-            width: 200px;
-            height: auto;
-            z-index: 1;
-        }
-
-        .card {
+        .search-card {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 20px;
             width: 100%;
+            max-width: 400px; /* Ограничим ширину плашки */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            margin-left: 220px;
             backdrop-filter: blur(10px);
-            max-height: 100%;
-            overflow: hidden;
+            margin: 0 auto; /* Центрирование */
+            display: inline-block; /* Для центрирования с text-align */
         }
 
         .input-field {
@@ -169,27 +164,24 @@
 <body>
     <!-- Навигационное меню -->
     <div class="nav-menu">
-        <div class="logo">Witchs Castle DB</div>
-        <a href="#" class="nav-item">Cookies</a>
-        <a href="#" class="nav-item">num</a>
-        <a href="#" class="nav-item">num</a>
-        <a href="#" class="nav-item">num</a>
-        <a href="#" class="nav-item">num</a>
+        <div class="logo">Wuthering.gg</div>
+        <a href="#" class="nav-item">Characters</a>
+        <a href="#" class="nav-item">Tier List</a>
+        <a href="#" class="nav-item">Echoes</a>
+        <a href="#" class="nav-item">Weapons</a>
+        <a href="#" class="nav-item">Items</a>
         <a href="#" class="nav-item">Game Guide</a>
-        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">Map</a>
         <a href="#" class="nav-item">Codes</a>
-        <a href="#" class="nav-item new">num</a>
+        <a href="#" class="nav-item new">Builder</a>
     </div>
 
     <!-- Контент -->
     <div class="content">
-        <div class="container">
-            <img src="object.png" alt="Object" class="object">
-            <div class="card">
-                <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
-                <button onclick="showText()" class="button">Найти</button>
-                <p id="result" class="result"></p>
-            </div>
+        <div class="search-card">
+            <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
+            <button onclick="showText()" class="button">Найти</button>
+            <p id="result" class="result"></p>
         </div>
         <div id="loading" class="loading">Загрузка...</div>
     </div>
