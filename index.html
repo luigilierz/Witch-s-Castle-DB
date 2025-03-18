@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Текст по ID</title>
+</head>
+<body>
+    <input type="number" id="idInput" placeholder="Введи ID">
+    <button onclick="showText()">Показать</button>
+    <p id="result"></p>
+
+    <script>
+        // Загружаем данные из внешнего JSON
+        let textData; // Переменная для хранения данных
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                textData = data; // Сохраняем данные после загрузки
+            })
+            .catch(error => console.error('Ошибка загрузки JSON:', error));
+
+        // Функция для отображения текста
+        function showText() {
+            const id = Number(document.getElementById('idInput').value); // Берем ID из ввода
+            const result = document.getElementById('result');
+            if (!textData) {
+                result.textContent = "Данные ещё загружаются...";
+                return;
+            }
+            const entry = textData.find(item => item.ID === id); // Ищем запись по ID
+            if (entry) {
+                result.textContent = entry.Текст; // Показываем текст
+            } else {
+                result.textContent = "ID не найден";
+            }
+        }
+    </script>
+</body>
+</html>
