@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Текст по ID</title>
+    <title>Текст по ID - Вики</title>
     <style>
         body {
             margin: 0;
@@ -10,12 +10,10 @@
             background: linear-gradient(135deg, rgba(30, 0, 60, 0.8), rgba(0, 40, 80, 0.8)), url('bg1.png') no-repeat center center;
             background-size: cover;
             background-blend-mode: overlay;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            padding-top: 80px; /* Пространство под фиксированное меню */
         }
 
         /* Адаптивное размытие фона */
@@ -29,23 +27,74 @@
             background: inherit;
             filter: brightness(0.7) blur(15px);
             z-index: -1;
-            transition: filter 0.3s; /* Плавное изменение размытия */
+            transition: filter 0.3s;
         }
 
         @media (max-width: 600px) {
             body::before {
-                filter: brightness(0.7) blur(10px); /* Уменьшаем размытие на маленьких экранах */
+                filter: brightness(0.7) blur(10px);
             }
         }
 
-        .container {
-            position: relative;
+        /* Навигационное меню */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
             display: flex;
             align-items: center;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-menu .logo {
+            background: #FFC107;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .nav-menu .nav-item {
+            margin: 0 10px;
+            padding: 5px 15px;
+            background: #2C2F33;
+            color: #FFF;
+            border-radius: 5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-menu .nav-item.new {
+            background: #7289DA;
+            position: relative;
+        }
+
+        .nav-menu .nav-item.new::after {
+            content: "New";
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: #FFD700;
+            color: #000;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Контейнер для контента */
+        .content {
+            position: relative;
             width: 80%;
             max-width: 600px;
-            height: 400px;
-            min-height: 300px; /* Минимальная высота для адаптивности */
+            margin: 0 auto;
+            padding-top: 20px;
         }
 
         .object {
@@ -64,8 +113,8 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             margin-left: 220px;
             backdrop-filter: blur(10px);
-            max-height: 100%; /* Ограничиваем высоту */
-            overflow: hidden; /* Предотвращаем вылезание */
+            max-height: 100%;
+            overflow: hidden;
         }
 
         .input-field {
@@ -75,7 +124,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             font-size: 16px;
-            box-sizing: border-box; /* Учитываем padding в ширине */
+            box-sizing: border-box;
         }
 
         .button {
@@ -100,13 +149,12 @@
             background: #f0f0f0;
             border-radius: 10px;
             text-align: center;
-            max-width: 100%; /* Ограничиваем ширину */
-            overflow-x: auto; /* Горизонтальный скроллинг */
-            white-space: nowrap; /* Предотвращаем перенос строк */
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
             box-sizing: border-box;
         }
 
-        /* Индикатор загрузки */
         .loading {
             display: none;
             position: absolute;
@@ -119,15 +167,32 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="object.png" alt="Object" class="object">
-        <div class="card">
-            <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
-            <button onclick="showText()" class="button">Найти</button>
-            <p id="result" class="result"></p>
-        </div>
+    <!-- Навигационное меню -->
+    <div class="nav-menu">
+        <div class="logo">Witchs Castle DB</div>
+        <a href="#" class="nav-item">Cookies</a>
+        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">Game Guide</a>
+        <a href="#" class="nav-item">num</a>
+        <a href="#" class="nav-item">Codes</a>
+        <a href="#" class="nav-item new">num</a>
     </div>
-    <div id="loading" class="loading">Загрузка...</div>
+
+    <!-- Контент -->
+    <div class="content">
+        <div class="container">
+            <img src="object.png" alt="Object" class="object">
+            <div class="card">
+                <input type="number" id="idInput" placeholder="Введи ID" class="input-field">
+                <button onclick="showText()" class="button">Найти</button>
+                <p id="result" class="result"></p>
+            </div>
+        </div>
+        <div id="loading" class="loading">Загрузка...</div>
+    </div>
 
     <script>
         let textData;
